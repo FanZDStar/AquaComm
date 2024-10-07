@@ -1,70 +1,92 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# IoT Device Control Platform
 
-## Available Scripts
+## 项目简介
+这个项目是一个基于 IoT 的设备控制平台，使用 MQTT 协议进行通信，整合了传感器数据和用户操作日志的管理。用户可以通过 Web 界面监控设备状态，并发送控制指令。
 
-In the project directory, you can run:
+## 技术栈
+- **前端**: React
+- **后端**: Node.js, Express
+- **数据库**: MySQL
+- **消息协议**: MQTT
 
-### `npm start`
+## 功能
+- 实时显示传感器数据（温度、气压、深度）
+- 用户控制设备的移动（前进、后退、左转、右转）
+- 显示用户操作日志
+- 日志信息分页显示
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 环境搭建
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 1. 克隆项目
+```bash
+git clone https://github.com/your-username/your-repo-name.git
+cd your-repo-name
+```
 
-### `npm test`
+### 2. 安装依赖
+在项目根目录下，分别为前端和后端安装依赖：
+```bash
+# 前端
+cd client
+npm install
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# 后端
+cd server
+npm install
+```
 
-### `npm run build`
+### 3. 配置数据库
+在 MySQL 中创建数据库和表：
+```sql
+CREATE DATABASE itcast;
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+USE itcast;
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+CREATE TABLE device_status (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    temperature FLOAT,
+    pressure FLOAT,
+    depth FLOAT,
+    timestamp DATETIME
+);
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+CREATE TABLE operation_logs (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    command VARCHAR(255),
+    timestamp DATETIME
+);
 
-### `npm run eject`
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 4. 启动服务
+在不同的终端中启动前端和后端服务：
+```bash
+# 启动后端
+cd server
+node index.js
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# 启动前端
+cd client
+npm start
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## API 端点
+- `GET /data`: 获取当前传感器数据
+- `GET /logs`: 获取操作日志
+- `POST /control`: 发送控制指令，示例请求体：
+```json
+{
+    "direction": "forward"
+}
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 贡献
+欢迎任何形式的贡献！如果你有建议或发现错误，请创建一个 issue 或提交 PR。
 
-## Learn More
+## 许可证
+此项目使用 MIT 许可证 - 详情请查看 [LICENSE](LICENSE)。
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 联系信息
+- GitHub: [你的 GitHub 账号](https://github.com/your-username)
+- Email: [你的邮箱](mailto:your-email@example.com)

@@ -1,23 +1,27 @@
 import React from 'react';
-import { Button, Card } from 'antd';
-import mqtt from 'mqtt';
+import axios from 'axios';
 
 const ControlPanel = () => {
-  const client = mqtt.connect('mqtt://172.6.0.240:1883');
+    const sendControlCommand = async (direction) => {
+        try {
+            await axios.post('http://localhost:3001/control', { direction });
+            console.log(`Command "${direction}" sent`);
+        } catch (error) {
+            console.error('Error sending command:', error);
+        }
+    };
 
-  const sendCommand = (command) => {
-    client.publish('control/movement', command);
-  };
-
-  return (
-    <Card>
-      <h2>控制面板</h2>
-      <Button onClick={() => sendCommand('前进')} type="primary">前进</Button>
-      <Button onClick={() => sendCommand('后退')} type="default">后退</Button>
-      <Button onClick={() => sendCommand('左转')} type="dashed">左转</Button>
-      <Button onClick={() => sendCommand('右转')} type="danger">右转</Button>
-    </Card>
-  );
+    return (
+        <div className="control-panel">
+            <h2>控制面板</h2>
+            <div className="controls">
+                <button className="button" onClick={() => sendControlCommand('forward')}>前进</button>
+                <button className="button" onClick={() => sendControlCommand('backward')}>后退</button>
+                <button className="button" onClick={() => sendControlCommand('left')}>左转</button>
+                <button className="button" onClick={() => sendControlCommand('right')}>右转</button>
+            </div>
+        </div>
+    );
 };
 
 export default ControlPanel;
