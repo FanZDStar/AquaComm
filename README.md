@@ -20,8 +20,8 @@
 
 ### 1. 克隆项目
 ```bash
-git clone https://github.com/your-username/your-repo-name.git
-cd your-repo-name
+git clone https://github.com/FanZDStar/aquacomm.git
+cd your-repo-name //你自己clone的地址
 ```
 
 ### 2. 安装依赖
@@ -88,5 +88,5 @@ npm start
 此项目使用 MIT 许可证 - 详情请查看 [LICENSE](LICENSE)。
 
 ## 联系信息
-- GitHub: [你的 GitHub 账号](https://github.com/your-username)
-- Email: [你的邮箱](mailto:your-email@example.com)
+- GitHub: [你的 GitHub 账号](https://github.com/FanZDStar)
+- Email: [你的邮箱](junyanghudlut@gmail.com)
