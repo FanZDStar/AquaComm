@@ -13,15 +13,15 @@
 ## 功能
 - 实时显示传感器数据（温度、气压、深度）
 - 用户控制设备的移动（前进、后退、左转、右转）
-- 显示用户操作日志
-- 日志信息分页显示
+- 分页显示用户操作日志
+- 分页显示设备状态记录
 
 ## 环境搭建
 
 ### 1. 克隆项目
 ```bash
 git clone https://github.com/FanZDStar/aquacomm.git
-cd your-repo-name //你自己clone的地址
+cd xxxxx
 ```
 
 ### 2. 安装依赖
@@ -75,6 +75,7 @@ npm start
 - `GET /data`: 获取当前传感器数据
 - `GET /logs`: 获取操作日志
 - `POST /control`: 发送控制指令，示例请求体：
+- `GET /history`:获取传感器历史记录
 ```json
 {
     "direction": "forward"
@@ -88,5 +89,5 @@ npm start
 此项目使用 MIT 许可证 - 详情请查看 [LICENSE](LICENSE)。
 
 ## 联系信息
-- GitHub: [你的 GitHub 账号](https://github.com/FanZDStar)
-- Email: [你的邮箱](junyanghudlut@gmail.com)
+- GitHub: [GitHub账号](https://github.com/FanZDStar)
+- Email: [邮箱](junyanghudlut@gmail.com)

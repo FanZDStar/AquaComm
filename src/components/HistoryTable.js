@@ -1,33 +1,28 @@
 import React from 'react';
+import '../styles.css'; // 确保样式被导入
 
-const LogList = ({ logs, currentPage, setCurrentPage }) => {
-    const logsPerPage = 5; // 每页显示的日志数量
-
-    const formatTimestamp = (timestamp) => {
-        const date = new Date(timestamp);
-        return date.toISOString().slice(0, 19).replace('T', ' '); // YYYY-MM-DD HH:mm:ss
-    };
-
-    const indexOfLastLog = currentPage * logsPerPage;
-    const indexOfFirstLog = indexOfLastLog - logsPerPage;
-    const currentLogs = logs.slice(indexOfFirstLog, indexOfLastLog);
-    const totalPages = Math.ceil(logs.length / logsPerPage);
+const HistoryTable = ({ historyData, currentPage, setCurrentPage, recordsPerPage, totalRecords }) => {
+    const totalPages = Math.ceil(totalRecords / recordsPerPage);
 
     return (
-        <div className="log-list">
-            <h2>用户操作日志</h2>
+        <div>
+            <h2>历史记录</h2>
             <table>
                 <thead>
                     <tr>
                         <th>时间</th>
-                        <th>操作</th>
+                        <th>温度 (°C)</th>
+                        <th>气压 (kPa)</th>
+                        <th>深度 (m)</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {currentLogs.map((log, index) => (
+                    {historyData.map((record, index) => (
                         <tr key={index}>
-                            <td>{formatTimestamp(log.timestamp)}</td>
-                            <td>{log.command}</td>
+                            <td>{new Date(record.timestamp).toLocaleString()}</td>
+                            <td>{record.temperature}</td>
+                            <td>{record.pressure}</td>
+                            <td>{record.depth}</td>
                         </tr>
                     ))}
                 </tbody>
@@ -53,4 +48,4 @@ const LogList = ({ logs, currentPage, setCurrentPage }) => {
     );
 };
 
-export default LogList;
+export default HistoryTable;
