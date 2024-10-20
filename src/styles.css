@@ -7,7 +7,7 @@ body {
 }
 
 .App {
-    max-width: 800px;
+    max-width: 1000px; /* 页面最大宽度 */
     margin: 20px auto;
     padding: 20px;
     background: white;
@@ -25,10 +25,65 @@ h2 {
     margin-top: 20px;
 }
 
-p {
-    font-size: 1.2em;
+/* 容器，用于 StatusDisplay 和 ThresholdSettings 对齐 */
+.status-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
 }
 
+.StatusDisplay, .ThresholdSettings {
+    background-color: #ffffff; /* 统一背景色 */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
+    flex: 1; /* 每个面板占据相等宽度 */
+    margin-right: 20px; /* 面板之间的间距 */
+}
+
+/* 去掉最后一个面板的右边距 */
+.StatusDisplay:last-child, .ThresholdSettings:last-child {
+    margin-right: 0;
+}
+
+.StatusDisplay {
+    flex: 2; /* 设备状态面板稍大一些 */
+}
+
+.ThresholdSettings {
+    flex: 1; /* 阈值设置稍小 */
+}
+
+.threshold-settings label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    color: #333;
+    width: 100%;
+}
+
+.threshold-settings label span {
+    flex-basis: 40%; /* 标签占40% */
+}
+
+.threshold-settings input {
+    flex-basis: 60%; /* 输入框占60% */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+.threshold-settings span {
+    display: block;
+    margin-top: 5px;
+    font-size: 0.9em;
+    color: red;
+}
+
+/* 控制按钮样式 */
 .controls {
     display: flex;
     justify-content: center;
@@ -50,6 +105,7 @@ p {
     background-color: #0056b3;
 }
 
+/* 表格样式 */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -67,6 +123,7 @@ th {
     color: #333;
 }
 
+/* 分页按钮 */
 .pagination {
     display: flex;
     justify-content: space-between;
@@ -78,6 +135,6 @@ th {
     flex: 1;
 }
 
-.pagination span {
+.pagination span { 
     margin: 0 10px;
 }
